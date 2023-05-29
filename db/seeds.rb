@@ -1,7 +1,41 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+team_a = Team.create(name: 'Lannisters')
+team_b = Team.create(name: 'Starks')
+
+player_a1 = Player.create(name: 'Joffrey Baratheon', team: team_a)
+player_a2 = Player.create(name: 'Gregor Clegane', team: team_a)
+player_a3 = Player.create(name: 'Cersei Lannister', team: team_a)
+
+player_b1 = Player.create(name: 'Jon Snow', team: team_b)
+player_b2 = Player.create(name: 'Arya Stark', team: team_b)
+player_b3 = Player.create(name: 'Brienne of Tarth', team: team_b)
+
+match_1 = Match.create(team: team_a, date: Date.today - 7)
+match_2 = Match.create(team: team_a, date: Date.today - 6)
+match_3 = Match.create(team: team_a, date: Date.today - 5)
+
+player_a1.mark_performance('10+ km', match_1)
+player_a1.mark_performance('70+ % accurate passes', match_1)
+player_a2.mark_performance('10+ km', match_1)
+player_a3.mark_performance('70+ % accurate passes', match_1)
+
+player_a1.mark_performance('10+ km', match_2)
+player_a1.mark_performance('70+ % accurate passes', match_2)
+player_a2.mark_performance('10+ km', match_2)
+player_a2.mark_performance('70+ % accurate passes', match_2)
+
+player_a1.mark_performance('10+ km', match_3)
+player_a1.mark_performance('70+ % accurate passes', match_3)
+
+player_b1.mark_performance('10+ km', match_1)
+player_b2.mark_performance('10+ km', match_1)
+player_b2.mark_performance('70+ % accurate passes', match_1)
+player_b3.mark_performance('70+ % accurate passes', match_1)
+
+player_b1.mark_performance('10+ km', match_2)
+player_b1.mark_performance('70+ % accurate passes', match_2)
+player_b2.mark_performance('10+ km', match_2)
+player_b2.mark_performance('70+ % accurate passes', match_2)
+player_b2.mark_performance('70+ % accurate passes', match_3)
+
+# ...
+
