@@ -10,4 +10,7 @@ FactoryBot.define do
 
   factory :match do
   end
+
+  factory :match_team do
+  end
 end

@@ -1,4 +1,5 @@
 class Match < ApplicationRecord
-  belongs_to :team
+  has_many :match_teams
+  has_many :teams, through: :match_teams
   has_many :performances
 end
