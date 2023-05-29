@@ -13,7 +13,9 @@ RSpec.describe Player, type: :model do
     let!(:player) { FactoryBot.create(:player, team: team) }
     let!(:match1) { FactoryBot.create(:match) }
     let!(:performance1) { FactoryBot.create(:performance, player: player, match: match1, performance: '10+ km') }
-    let!(:performance2) { FactoryBot.create(:performance, player: player, match: match1, performance: '70+ % accurate passes') }
+    let!(:performance2) do
+      FactoryBot.create(:performance, player: player, match: match1, performance: '70+ % accurate passes')
+    end
 
     it 'returns true if the player has the specified performance' do
       expect(player.has_performance?('10+ km')).to be true
@@ -41,16 +43,16 @@ RSpec.describe Player, type: :model do
     let!(:match_team5) { FactoryBot.create(:match_team, match: match5, team: team) }
     let!(:match_team6) { FactoryBot.create(:match_team, match: match6, team: team) }
     let!(:player) { FactoryBot.create(:player, team: team) }
-  
+
     it 'returns the last five matches for the player\'s team' do
       expect(player.last_five_matches).to eq([match6, match5, match4, match3, match2])
     end
-  
+
     it 'not return last 6th match' do
       expect(player.last_five_matches).not_to include(match1)
     end
   end
-  
+
   describe '.mark_performance' do
     let!(:team) { FactoryBot.create(:team) }
     let!(:player) { FactoryBot.create(:player, team: team) }
@@ -58,9 +60,9 @@ RSpec.describe Player, type: :model do
     let!(:match) { FactoryBot.create(:match) }
 
     it 'creates a new performance for the player in the specified match' do
-      expect {
+      expect do
         player.mark_performance('10+ km', match)
-      }.to change { Performance.count }.by(1)
+      end.to change { Performance.count }.by(1)
 
       new_performance = Performance.last
       expect(new_performance.player).to eq(player)

@@ -24,11 +24,9 @@ class Player < ApplicationRecord
                      .group(:id)
                      .order(Arel.sql('COUNT(performances.id) DESC'))
                      .limit(5)
-  
-    if team.present?
-      relation = relation.where(team: team)
-    end
-  
+
+    relation = relation.where(team: team) if team.present?
+
     relation
   end
 end
