@@ -33,7 +33,6 @@ player_b3.mark_performance('70+ % accurate passes', match_1)
 
 player_b1.mark_performance('10+ km', match_2)
 player_b1.mark_performance('70+ % accurate passes', match_2)
-player_b2.mark_performance('10+ km', match_2)
 player_b2.mark_performance('70+ % accurate passes', match_2)
 player_b2.mark_performance('70+ % accurate passes', match_3)
 

@@ -19,12 +19,16 @@ class Player < ApplicationRecord
   end
 
   def self.top_players_by_performance(performance, team = nil)
-    relation = Player.joins(:performances).where(performances: { performance: performance })
-
+    relation = Player.joins(:performances)
+                     .where(performances: { performance: performance })
+                     .group(:id)
+                     .order(Arel.sql('COUNT(performances.id) DESC'))
+                     .limit(5)
+  
     if team.present?
       relation = relation.where(team: team)
     end
-
-    relation.group(:id).order('COUNT(performances.id) DESC').limit(5)
+  
+    relation
   end
 end
